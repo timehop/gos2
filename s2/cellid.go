@@ -181,6 +181,26 @@ func (ci CellID) EdgeNeighbors() [4]CellID {
 	}
 }
 
+// AllNeighbors returns the eights cells that are adjacent across and diagonal from
+// the cell's four edges. Edges 0, 1, 2, 3, 4, 5, 6, 7 are in the down, down-right,
+// right, right-up, up, up-left, left, down-left directions.
+// All neighbors are guaranteed to be distinct.
+func (ci CellID) AllNeighbors() [8]CellID {
+	level := ci.Level()
+	size := sizeIJ(level)
+	f, i, j, _ := ci.faceIJOrientation()
+	return [8]CellID{
+		cellIDFromFaceIJWrap(f, i, j-size).Parent(level),
+		cellIDFromFaceIJWrap(f, i+size, j-size).Parent(level),
+		cellIDFromFaceIJWrap(f, i+size, j).Parent(level),
+		cellIDFromFaceIJWrap(f, i+size, j+size).Parent(level),
+		cellIDFromFaceIJWrap(f, i, j+size).Parent(level),
+		cellIDFromFaceIJWrap(f, i-size, j+size).Parent(level),
+		cellIDFromFaceIJWrap(f, i-size, j).Parent(level),
+		cellIDFromFaceIJWrap(f, i-size, j-size).Parent(level),
+	}
+}
+
 // RangeMin returns the minimum CellID that is contained within this cell.
 func (ci CellID) RangeMin() CellID { return CellID(uint64(ci) - (ci.lsb() - 1)) }
 
