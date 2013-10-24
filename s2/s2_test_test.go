@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	"code.google.com/p/gos2/r1"
-	"code.google.com/p/gos2/s1"
+	"github.com/timehop/gos2/r1"
+	"github.com/timehop/gos2/s1"
 )
 
 func TestKmToAngle(t *testing.T) {
