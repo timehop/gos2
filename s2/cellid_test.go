@@ -3,8 +3,8 @@ package s2
 import (
 	"testing"
 
-	"code.google.com/p/gos2/r2"
-	"code.google.com/p/gos2/s1"
+	"github.com/timehop/gos2/r2"
+	"github.com/timehop/gos2/s1"
 )
 
 func TestCellIDFromFace(t *testing.T) {
